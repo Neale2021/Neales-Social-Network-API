@@ -1,25 +1,25 @@
-const { Thought, User } = require('../models');
+const { Thoughts, User } = require('../models');
 
 const thoughtController = {
 
     getThoughts(req, res) {
-        Thought.find({})
-            .then(thoughtData => res.json(thoughtData))
+        Thoughts.find({})
+            .then(thoughtsData => res.json(thoughtsData))
             .catch(err => {
                 console.log(err);
                 res.status(400).json(err);
             });
     },
     getThoughtByID({ params }, res) {
-        Thought.findOne({ _id: params.thoughtId })
-            .then(thoughtData => res.json(thoughtData))
+        Thoughts.findOne({ _id: params.thoughtsId })
+            .then(thoughtsData => res.json(thoughtsData))
             .catch(err => {
                 console.log(err);
                 res.status(400).json(err);
             });
     },
     addThought({ params, body }, res) {
-        Thought.create(body)
+        Thoughts.create(body)
             .then(({ _id }) => {
                 return User.findOneAndUpdate(
                     { _id: params.userId },
@@ -27,8 +27,8 @@ const thoughtController = {
                     { new: true }
                 );
             })
-            .then(thoughtData => {
-                if (!thoughtData) {
+            .then(thoughtsData => {
+                if (!thoughtsData) {
                     res.status(404).json({ message: 'thought data incorrect!' });
                     return;
                 }
@@ -37,20 +37,20 @@ const thoughtController = {
             .catch(err => res.json(err));
     },
     updateThought({ params, body }, res) {
-        Thought.findByIdAndUpdate({ _id: params.thoughtId }, body, { runValidators: true, new: true })
-            .then(thoughtData => {
-                if (!thoughtData) {
+        Thoughts.findByIdAndUpdate({ _id: params.thoughtId }, body, { runValidators: true, new: true })
+            .then(thoughtsData => {
+                if (!thoughtsData) {
                     res.status(404).json({ message: 'user not found with this ID!' });
                     return;
                 }
-                res.json(dbPizzaData);
+                res.json(dbFootyData);
             })
             .catch(err => res.json(err));
     },
     deleteThought({ params }, res) {
-        Thought.findByIdAndDelete({ _id: params.thoughtId }, { runValidators: true, new: true })
-            .then(thoughtData => {
-                if (!thoughtData) {
+        Thoughts.findByIdAndDelete({ _id: params.thoughtId }, { runValidators: true, new: true })
+            .then(thoughtsData => {
+                if (!thoughtsData) {
                     res.status(404).json({ message: 'user not found with this ID!' });
                     return;
                 }
@@ -59,8 +59,8 @@ const thoughtController = {
             .catch(err => res.json(err));
     },
     addReaction({params, body}, res){
-        Thought.findOneAndUpdate(
-            {_id: params.thoughtId},
+        Thoughts.findOneAndUpdate(
+            {_id: params.thoughtsId},
             {$push: {reactions: body}},
             { new: true, runValidators: true }
         )
@@ -74,13 +74,13 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
     deleteReaction({params}, res){
-        Thought.findOneAndUpdate(
-            {_id: params.thoughtId},
+        Thoughts.findOneAndUpdate(
+            {_id: params.thoughtsId},
             {$pull: {reactions: {reactionId : params.reactionId}}},
             { new: true, runValidators: true }
         )
-        .then(thoughtData => {
-            if (!thoughtData) {
+        .then(thoughtsData => {
+            if (!thoughtsData) {
                 res.status(404).json({ message: 'Incorrect reaction data!' });
                 return;
             }
