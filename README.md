@@ -16,7 +16,15 @@ SO THAT my website can handle large amounts of unstructured data
   
 ## Screen shots from Insomina 
 
+<img width="1792" alt="get thoughts" src="https://user-images.githubusercontent.com/98126694/179431787-9745980c-f5df-4df1-8a71-34dc3156b359.png">
 
+
+
+<img width="1792" alt="get user by ID" src="https://user-images.githubusercontent.com/98126694/179431793-4000afec-deeb-46ed-a901-d9d0c009aa0e.png">
+
+
+
+<img width="1792" alt="get users" src="https://user-images.githubusercontent.com/98126694/179431805-c44c9ea6-4377-4e57-8e10-5e6849044742.png">
 
 
 
