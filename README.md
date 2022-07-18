@@ -23,7 +23,7 @@ SO THAT my website can handle large amounts of unstructured data
 
 ## Link to walk through video and link to gitHub repository.
 
-
+https://youtu.be/LWEEAPiy70E 
 
 
 
